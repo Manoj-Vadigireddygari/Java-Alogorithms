@@ -1,23 +1,27 @@
 package com.algorithms;
 
-
 import java.util.Arrays;
-import java.util.OptionalInt;
 import java.util.Scanner;
 
-public class LinearSearchArray {
+public class binarySearchArray {
 
-    public static boolean linearSearch(int[] arr,int target){
-        for(int i=0; i<arr.length; i++){
-            if(arr[i] == target){
+    public static boolean binarySearch(int [] arr, int target){
+         int min = 0;
+         int max = arr.length - 1;
+         while(min <= max){
+            int mid = (min + max)/2;
+            if(target == arr[mid]){
                 return true;
+            }else if(target < arr[mid]){
+                max = mid -1;
             }
+            else{
+                min = mid +1;
+            }
+         }
+         return false;
         }
-        return false;
-    }
-    public static OptionalInt linearSearchUsingStreams(int[] arr, int target){
-        return Arrays.stream(arr).filter(x -> x == target).findFirst();
-    }
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -35,8 +39,9 @@ public class LinearSearchArray {
         }
         System.out.println("Enter the element to search:");
         int target = scanner.nextInt();
-
-        System.out.println(linearSearch(arr, target));
-        linearSearchUsingStreams(arr, target).ifPresent(System.out::println);
+     System.out.println(binarySearch(arr, target)); 
+     System.out.println(Arrays.binarySearch(arr,target));
+     scanner.close();
     }
-}           
+
+}
